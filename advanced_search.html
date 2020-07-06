@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="top_line">
+            <a type="button" href="index.html" class="btn btn-light top_button">Back to Search</a>
+        </div>
+        <div style="position: relative;top: 5%;text-align: left; margin-left:50px;margin-right:50px">
+            <Image src="images\google_logo.png" style="width:150px">
+        </div>
+
+        <div style="position: relative;top: 8%; left: 5%;width:50%">
+            <h2 class="text-secondary">Find pages with...</h2>
+            
+        </div>
+        <div style="position:relative;top:10%">
+
+                <form action="https://www.google.com/search" style="width:80%;margin:auto;">
+                    <div>
+                        <p class="as_text">all these words: </p>
+                        <div class="as_form_box"><input type="text" class="form-control as_form" name="as_q"></div>    
+                    </div>
+
+                    <div>
+                        <p class="as_text">this exact word or phrase: </p>
+                        <div class="as_form_box"><input type="text" class="form-control as_form" name="as_epq"></div>
+                    </div>
+
+                    <div>
+                        <p class="as_text">any of these words: </p>
+                        <div class="as_form_box"><input type="text" class="form-control as_form" name="as_oq"></div>
+                        <input type="hidden" name="tbm" value="isch">
+                    </div>
+                
+                    <div>
+                        <p class="as_text">none of these words: </p>
+                        <div class="as_form_box"><input type="text" class="form-control as_form" name="as_eq"></div>
+                        <input type="hidden" name="tbm" value="isch">
+                    </div>
+
+                    <div style="text-align: right;margin-top:20px">
+                        <input type="submit" class="btn btn-primary" value="Advanced Search">
+                    </div>
+                    
+                </form>
+
+        </div>
+        
+        
+
+    </body>
+</html>
