@@ -67,6 +67,7 @@ def createPage(request):
                     "ErrorMessage" : errorM
                 })
             else:
+                content = "#" + title + "\n\n" + content
                 util.save_entry(title,content)
                 return HttpResponseRedirect(reverse('entry', args=[title]))
         else:
@@ -93,6 +94,6 @@ def entryEdit(request,entryname):
 
 def randomPage(request):
     entrylist = util.list_entries()
-    ranInt = random.randint(0,len(entrylist))
+    ranInt = random.randint(0,len(entrylist)-1)
     title = entrylist[ranInt]
     return HttpResponseRedirect(reverse('entry', args=[title]))
