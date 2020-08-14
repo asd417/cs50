@@ -1,0 +1,98 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h4>{{listing.name}}
+        {% if listing.closed %}
+            <span class="badge badge-info">Closed</span>
+        {% endif %}
+    </h4>
+
+    {% if listing.closed %}
+    {% if bidhigh.author == user %}
+    <div class="alert alert-success" role="alert">
+        You have won this listing!
+    </div>
+    {% endif %}
+    {% endif %}
+    
+    <p>Time Posted: {{listing.time}}</p>
+    <p>By {{listing.author}}</p>
+
+    <img src={{listing.imageurl}}>
+
+    <h1>${{ price }}</h1>
+
+    {% if IsAuthenticated %}
+    {% if user == listing.author %}
+    {% if listing.closed == False %}
+    <form action="{% url 'listing' listing.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="closevar" value="Close">
+        <input type="submit" value="Close Listing">
+    </form>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+
+    <p>{{listing.description}}</p>
+
+    {% if IsAuthenticated %}
+    {% if InWatch %}
+    <form action="{% url 'listing' listing.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="watchvar" value="Remove">
+        <input type="submit" value="Remove From Watchlist">
+    </form>
+    {% else %}
+    <form action="{% url 'listing' listing.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="watchvar" value="Add">
+        <input type="submit" value="Add To Watchlist">
+    </form>
+    {% endif %}
+    {% endif %}
+
+    {% if IsAuthenticated %}
+    <div class="form-group">
+        <form action="{% url 'listing' listing.id %}" method="post">
+        {% csrf_token %}
+        {{ bidform }}
+        <input type="submit" value="Post Bidding">
+        </form>
+    </div>
+    {% endif %}
+
+    {% if Iserror%}
+    <div class="alert alert-danger" role="alert">
+        {{ errorM }}
+    </div>
+    {% endif %}
+
+    <ul class="list-group">
+        <li class="list-group-item"> Biddings </li>
+    {% for bid in biddings %}
+        <li class="list-group-item">{{bid.price}}</li>
+    {% endfor %}
+    </ul>
+
+    {% if IsAuthenticated %}
+    <div class="form-group">
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+            <textarea class="form-control" name="commentContent" rows="10" cols="80" placeholder="Write your comment here." style="overflow:hidden; height:auto; width:auto"></textarea>
+            <input type="submit" value="Post Comment">
+        </form>
+    </div>  
+    {% endif %}
+
+    <ul class="list-group">
+        <li class="list-group-item"> Comments </li>
+    {% for comment in comments %}
+        <li class="list-group-item">
+            <h4>{{comment.author}}</h4>
+            <p>{{comment.content}}</p>
+            <p>{{comment.time}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
