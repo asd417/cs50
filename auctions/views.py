@@ -24,7 +24,7 @@ class CommentForm(forms.Form):
     commentContent = forms.CharField()
 
 class ListingForm(forms.Form):
-    name = forms.CharField(max_length=60)
+    name = forms.CharField(max_length=150)
     
     categoryid = forms.CharField(max_length=10)
     imageurl = forms.CharField(max_length=600, required=False)
@@ -32,9 +32,7 @@ class ListingForm(forms.Form):
 
     description = forms.CharField(max_length=600)
 
-
-def index(request):
-    listings = Listing.objects.all().filter(closed=False)
+def groupListings(listings):
     listingGroup = []
     listingGroupTotal = []
     listingCount = 0
@@ -48,9 +46,13 @@ def index(request):
             listingCount = 0
             listingGroupCount += 1
     listingGroupTotal.append(listingGroup)
+    return listingGroupTotal
+
+def index(request):
+    groupedListings = groupListings(Listing.objects.all().filter(closed=False))
 
     return render(request, "auctions/index.html",{
-        "listingGroupTotal": listingGroupTotal,
+        "listingGroupTotal": groupedListings,
     })
 
 def login_view(request):
@@ -207,11 +209,9 @@ def listing(request,id):
     comments = curlisting.comments.all()
         
     return render(request, "auctions/listing.html",{
-                "user": curUser,
                 "listing": curlisting,
                 "InWatch": watching,
                 "biddings": bidlist,
-                "bidform": BidForm(),
                 "bidhigh": bidhighest,
                 "price": curPrice,
                 "comments": comments,
@@ -225,33 +225,26 @@ def watchlist(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     currentUser = User.objects.get(username=request.user.username)
-    watchlist = currentUser.watchlist.all()
 
-    watchingGroup = []
-    watchingGroupTotal = []
-    watchingCount = 0
-    watchingGroupCount = 0
-    for listing in watchlist:
-        watchingGroup.append(listing)
-        watchingCount += 1
-        if watchingCount == 3:
-            watchingGroupTotal.append(watchingGroup)
-            watchingGroup = []
-            watchingCount = 0
-            watchingGroupCount += 1
-    watchingGroupTotal.append(watchingGroup)
+    groupedWatchList = groupListings(currentUser.watchlist.all())
 
     return render(request,"auctions/watchlist.html",{
-        "watchingGroupTotal": watchingGroupTotal
+        "watchingGroupTotal": groupedWatchList
     })
 
 def category(request, cat_name):
-    if cat_name == "all":
-        return renger(request,"auctions/categoryAll.html")
-    curcat = Category.objects.get(name="cat_name")
+    if cat_name == 0:
+        groupedListings = groupListings(Listing.objects.all())
+        return render(request,"auctions/category.html",{
+            "listingGroupTotal": groupedListings,
+            "categories": Category.objects.all()
+        })
+    curcat = Category.objects.get(id=cat_name)
     catList = curcat.listings.all()
+    groupedListings = groupListings(catList)
     return render(request,"auctions/category.html",{
-        "listings": catList
+        "listingGroupTotal": groupedListings,
+        "categories": Category.objects.all()
     })
 
 def createListing(request):

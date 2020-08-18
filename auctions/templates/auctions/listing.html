@@ -56,7 +56,8 @@
     <div class="form-group">
         <form action="{% url 'listing' listing.id %}" method="post">
         {% csrf_token %}
-        {{ bidform }}
+        <label for="id_price">Place Your Bid :</label>
+        <input type="number" name="price" step="0.01" required="" min={{ price }} id="id_price">
         <input type="submit" value="Post Bidding">
         </form>
     </div>

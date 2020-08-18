@@ -13,7 +13,9 @@
                 {% for listing in listings%}
                 <div class="col-sm">
                     <div class="card" style="width: 18rem;">
+                        {% if listing.imageurl != "" %}
                         <img src={{listing.imageurl}} class="card-img-top" alt="..." style="width: 100%;height: 15vw;object-fit: cover;">
+                        {% endif %}
                         <div class="card-body">
                         <h5 class="card-title">{{listing.name}}
                             {% if listing.closed %}

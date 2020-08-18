@@ -12,13 +12,13 @@ class Category(models.Model):
         return f"{self.name}"
 
 class Listing(models.Model):
-    name = models.CharField(max_length=60)
+    name = models.CharField(max_length=150)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     watchers = models.ManyToManyField(User,related_name="watchlist", blank=True)
     
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="listings")
-    imageurl = models.CharField(max_length=600)
+    imageurl = models.CharField(max_length=600, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     closed = models.BooleanField(default=False)

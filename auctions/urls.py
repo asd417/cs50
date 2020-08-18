@@ -11,6 +11,6 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("listing/<int:id>", views.listing, name="listing"),
     path("watchlist",views.watchlist,name="watchlist"),
-    path("category/<str:cat_name>",views.category,name="category"),
+    path("category/<int:cat_name>",views.category,name="category"),
     path("createListing",views.createListing,name="createListing")
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

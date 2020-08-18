@@ -1,9 +1,8 @@
 body {
     padding: 10px;
 }
-
-.card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
+.sidebar {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 15rem;
 }
