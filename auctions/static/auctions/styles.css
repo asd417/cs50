@@ -1,0 +1,8 @@
+body {
+    padding: 10px;
+}
+.sidebar {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 15rem;
+}

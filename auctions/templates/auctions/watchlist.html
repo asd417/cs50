@@ -1,0 +1,46 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h2>My Watchlist</h2>
+    {% for listing in watchlist %}
+
+    {% endfor %}
+
+    <div class="container">
+        <div class="row">
+            {% for listings in watchingGroupTotal %}
+                {% for listing in listings%}
+                <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                        {% if listing.imageurl != "" %}
+                        <img src={{listing.imageurl}} class="card-img-top" alt="..." style="width: 100%;height: 15vw;object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                        <h5 class="card-title">{{listing.name}}
+                            {% if listing.closed %}
+                                <span class="badge badge-info">Closed</span>
+                            {% endif %}
+                        </h5>
+                        <p class="card-text">{{ listing.description|truncatechars:20 }}</p>
+                        <p class="card-text">${{ listing.price }}</p>
+                        
+                        {% if listing.closed %}
+                            <a class="nav-link" href="{% url 'listing' listing.id %}">View Detail</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'listing' listing.id %}">Purchase</a>
+                        {% endif %}
+                        
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="w-100"></div>
+            {% endfor %}
+        
+        </div>
+    </div>
+
+    {{request.user.first_name}}
+
+{% endblock %}
