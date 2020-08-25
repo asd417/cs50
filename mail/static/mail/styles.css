@@ -1,0 +1,147 @@
+textarea {
+    min-height: 400px;
+}
+
+.mailcontainer {
+    display:flex;
+    flex-direction:row;
+    cursor:pointer;
+    background-color: white;
+    width:90%;
+}
+
+.mailcontainer ~ li {
+    background-color: white;
+}
+
+.readmailcontainer ~ li {
+    background-color: lightgrey;
+}
+
+.readmailcontainer {
+    display:flex;
+    flex-direction:row;
+    cursor:pointer;
+    background-color:lightgrey;
+    width:90%;
+}
+
+.mailcontainer:hover {
+    display:flex;
+    flex-direction:row;
+    cursor:pointer;
+    background-color:#007bff;
+}
+
+.readmailcontainer:hover {
+    display:flex;
+    flex-direction:row;
+    cursor:pointer;
+    background-color:#007bff;
+}
+
+.mailcontainer p {
+    color:black;
+}
+
+.readmailcontainer p {
+    color:black;
+}
+
+.mailcontainer b {
+    color:grey;
+}
+
+.readmailcontainer b {
+    color:grey;
+}
+
+.mailcontainer:hover p {
+    color:white;
+}
+
+.readmailcontainer:hover p {
+    color:white;
+}
+
+.mailcontainer:hover b {
+    color:white;
+}
+
+.readmailcontainer:hover b {
+    color:white;
+}
+
+.mailsender {
+    width:15%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mailtitle {
+    width:65%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.timestamp {
+    text-align:right;
+    width:20%;
+}
+
+.mailbutton {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    height:100%;
+    width:100%;
+}
+
+#viewsubtitle {
+    padding-top: 0.3rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.3rem;
+    padding-left: 1.25rem;
+
+    display:flex;
+    flex-direction:row;
+}
+
+#viewrecipient {
+    width:40%;
+    height:50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:0px;
+}
+
+#viewauthor {
+    width:30%;
+    height:50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:0px;
+    text-align:right;
+}
+
+#viewtimestamp {
+    width:30%;
+    height:50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:0px;
+    text-align:right;
+}
+
+.TopButtons {
+    margin-bottom:10px;
+}
+
+.checkboxarea {
+    background-color: lightgrey;
+}
