@@ -1,0 +1,26 @@
+{% extends "network/layout.html" %}
+
+{% load static %}
+{% block body %}
+
+
+<h1 id="docname" hidden></h1>
+
+<div>
+    <div id="postContainer">
+    </div>
+    <div id="blockError">
+        <h4>No Posts found on this page</h4>
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/follow_dom.js' %}"></script>
+    <script src="{% static 'network/handlepost.js' %}"></script>
+{% endblock %}
