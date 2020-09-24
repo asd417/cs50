@@ -1,4 +1,4 @@
-cs50 - Mail
+# CS50 - Mail
 
 Requirements:
 Using JavaScript, HTML, and CSS, complete the implementation of your single-page-app email client. You must fulfill the following requirements:
