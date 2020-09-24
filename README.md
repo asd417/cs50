@@ -1,4 +1,4 @@
-# cs50 Search
+# CS50 Search
 
 Requirements:
 Your website must meet the following requirements.
