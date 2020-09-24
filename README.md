@@ -1,4 +1,4 @@
-Final Project - Cooking Recipe Site
+# Final Project - Cooking Recipe Site
 
 Upload Recipe, Get Rated, Search Recipes
 
