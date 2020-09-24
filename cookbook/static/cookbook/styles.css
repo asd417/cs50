@@ -1,0 +1,31 @@
+textarea {
+    width:50%;
+}
+
+.flexcontainer {
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.TitleDiv {
+    margin-bottom:2rem;
+    margin-top:2rem;
+}
+
+.likebutton {
+    position:relative;
+    left: 80%;
+}
+
+.infoContainer {
+    width:20%;
+}
+
+.infoContainer .likebutton {
+    position:relative;
+    left: 0%;
+}
+
+form {
+    display: inline-block;
+}

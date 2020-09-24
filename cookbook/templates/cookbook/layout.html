@@ -1,0 +1,83 @@
+{% load static %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('#search_button').addEventListener('click', function() {
+        keyword = document.querySelector('#search_keyword').value
+        location.replace(`{% url 'index' 1 %}`)
+    })
+})
+</script>
+
+<style>
+    form .nav-link {
+        border:none;
+        color:#007bff;
+        background-color:white;
+    }
+    form .nav-link:hover {
+        border:none;
+        color:#0066cc;
+        background-color:white;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Cookbook{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'cookbook/styles.css' %}" rel="stylesheet">
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        <h1>Cookbook</h1>
+        <div class="body" style="margin:auto;">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index' 1 %}" id="nav_browse">Browse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'upload' %}" id="nav_post">Upload</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="username" href="{% url 'profile' user.username 1 %}"><strong>{{ user.username }}</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'liked' %}">
+                            <input hidden type="number" name='pagenum' value='1'>
+                            <input class="nav-link" type="submit" value='Liked'>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+                <form action="{% url 'search' %}">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" placeholder="Search Recipe" id="search_keyword" aria-label="Search Recipe" aria-describedby="button-addon2">
+                        <input type="number" hidden name="pagenum" value="1">
+                        <div class="input-group-append">
+                            <input class="btn btn-outline-secondary" type="submit" id="search_button" value="Search">
+                        </div>
+                    </div>
+                </form>
+                
+            </ul>
+            {% block body %}
+            {% endblock %}
+        </div>
+        {% block carousel %}
+        {% endblock %}
+    </body>
+</html>
