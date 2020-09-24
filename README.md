@@ -1,3 +1,3 @@
-# asd417
+# CS50 Repo Dump
 
-Repo for storing my works for the cs50 course(s).
+* Repo for storing all the projects I have done as part of the cs50 course
