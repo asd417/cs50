@@ -1,6 +1,6 @@
 cs50 - Mail
-Requirements:
 
+Requirements:
 Using JavaScript, HTML, and CSS, complete the implementation of your single-page-app email client. You must fulfill the following requirements:
 
 Send Mail: When a user submits the email composition form, add JavaScript code to actually send the email.
