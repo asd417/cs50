@@ -1,0 +1,58 @@
+{% extends "cookbook/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div style="margin: 0 auto;width:95%;">
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" style="width:100%">
+        {% csrf_token %}
+    
+        <div class="input-group input-group-lg TitleDiv">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Title</span>
+            </div>
+            <input type="text" name="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" name="mainImage" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose a Main Image for this Recipe</label>
+            </div>
+        </div>
+        <input name="stepCount" id="stepcounter" type="number" value="1" min="1" hidden>
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Step 1</span>
+                        </div>
+                        <textarea id='step0' name='step0' class="form-control" required></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="img0" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose an Image for this Step</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="add_step" class="btn btn-primary" style="margin-top:1rem;margin-left:1rem;">Add Step</button>
+            <button id="remove_step" class="btn btn-primary" style="margin-top:1rem;">Remove Step</button>
+            <div style="margin:1rem;">
+                <input id="publishRecipe" type="submit" class="btn btn-primary btn-lg" value="Upload Recipe">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'cookbook/composeRecipe.js' %}"></script>
+{% endblock %}
