@@ -1,4 +1,4 @@
-cs50 Commerce
+# CS50 Commerce
 
 Requirements:
 Complete the implementation of your auction site. You must fulfill the following requirements:
