@@ -22,8 +22,14 @@ textarea {
 }
 
 .infoContainer .likebutton {
-    position:relative;
+    position: relative;
     left: 0%;
+}
+
+.card-body .likebutton {
+    position: absolute;
+    top: 80%;
+    left: 70%;
 }
 
 form {

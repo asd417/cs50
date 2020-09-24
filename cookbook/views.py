@@ -229,7 +229,7 @@ def recipePage(request,id):
 @login_required(login_url='login')
 def recipeEditPage(request,id):
     if request.method == "POST":
-
+        print("POST request received")
         user = User.objects.get(username=request.user.username)
         editTarget = Recipe.objects.get(id=id)
         editTarget.title = request.POST['title']
