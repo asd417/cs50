@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if(stepCount > 1){
             stepCount -= 1
             stepContainer = this.parentElement;
-            stepContainer.children[stepCount].remove();
+            thisInd = Array.prototype.indexOf.call(stepContainer.children, this);
+            console.log(thisInd)
+            stepContainer.children[thisInd-2].remove();
         }
         document.querySelector('#stepcounter').value = stepCount;
         return false;

@@ -230,35 +230,36 @@ def recipeEditPage(request,id):
         editTarget = Recipe.objects.get(id=id)
         editTarget.title = request.POST['title']
         stepCount = int(request.POST['stepCount'])
-        editTarget.stepCount = stepCount
+        
         try:
             editTarget.image = request.FILES[f'mainImage']
         except Exception:
-            print(f'mainImage not found')
-        for i in range(stepCount):
-            try:
-                # attempt to edit existing step
-                step = editTarget.steps.get(steporder=i)
-            except Exception:
-                # previous version of step not found, adding new step
-                newStep = Step.objects.create()
-                newStep.content = request.POST[f'step{i}']
-                newStep.steporder = i
-                newStep.recipe = editTarget
-                try:
-                    newStep.image = request.FILES[f'img{i}']
-                except Exception:
-                    print(f'img{i} not found')
-                newStep.save()
+            print(f'mainImage not found, using existing image...')
 
-            newcontent = request.POST[f'step{i}']
-            if step.content != newcontent:
-                step.content = newcontent
+        imgcopy = [editTarget.stepCount]
+        for step in editTarget.steps.all():
             try:
-                step.image = request.FILES[f'img{i}']
+                imgcopy[step.steporder] = step.image
             except Exception:
-                print(f'img{i} not found')
-            step.save()
+                pass
+
+        editTarget.stepCount = stepCount
+        editTarget.steps.all().delete()
+        
+        for i in range(stepCount):
+            newStep = Step.objects.create()
+            newStep.content = request.POST[f'step{i}']
+            newStep.steporder = i
+            newStep.recipe = editTarget
+            try:
+                newStep.image = request.FILES[f'img{i}']
+            except Exception:
+                print(f'img{i} not found, using existing image')
+                try:
+                    newStep.image = imgcopy[i]
+                except Exception:
+                    print(f'existing image for img{i} not found')
+            newStep.save()
 
         editTarget.save()
         return HttpResponseRedirect(f'/recipe/{editTarget.id}')
