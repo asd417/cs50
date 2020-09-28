@@ -1,6 +1,7 @@
-var stepCount = 1;
+var stepCount = 0;
 document.addEventListener('DOMContentLoaded', function() {
-    stepCount = 1;
+    stepCount = parseInt(document.querySelector('#stepcounter').value);
+    console.log(stepCount)
     document.querySelector('#add_step').addEventListener('click',function() {
         nextstepCount = stepCount + 1;
         newstep = document.createElement('div');

@@ -28,12 +28,9 @@
     <div style="background-color: darkslategray;">
         <div id="carouselExampleCaptions" class="carousel slide" data-interval=false>
             <ol class="carousel-indicators" id="carIndicator">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                 {% for step in recipe.steps.all %}
-                    {% if step.steporder == 0 %}
-                        <li data-target="#carouselExampleCaptions" data-slide-to="{{step.steporder}}" class="active"></li>
-                    {% else %}
-                        <li data-target="#carouselExampleCaptions" data-slide-to="{{step.steporder}}"></li>
-                    {% endif %}
+                    <li data-target="#carouselExampleCaptions" data-slide-to="{{step.steporder|add:'1'}}"></li>
                 {% endfor %}
             </ol>
             <div class="carousel-inner" id="carInner">
