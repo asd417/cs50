@@ -8,10 +8,6 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 
-##TODO
-# Align like buttons to bottom
-# check out FontAwesome
-
 # Create your views here.
 from .models import *
 
