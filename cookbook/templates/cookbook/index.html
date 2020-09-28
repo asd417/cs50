@@ -18,8 +18,10 @@
                                 <h5 class="card-title">{{recipe.title}}</h5>
                                 <p>by <a class="card-text" href="{% url 'profile' recipe.author 1 %}">{{ recipe.author }}</a></p>
                                 <a class="nav-link" href="{% url 'recipe' recipe.id %}">View Recipe</a>
-                                <button id="like{{recipe.id}}" type="button" class="btn btn-outline-danger likebutton">❤️</button>
-                            </div>
+                                {% if user.is_authenticated %}
+                                    <button id="like{{recipe.id}}" type="button" class="btn btn-outline-danger likebutton">❤️</button>
+                                {% endif %}
+                                </div>
                         </div>
                     </div>
                     {% endfor %}
